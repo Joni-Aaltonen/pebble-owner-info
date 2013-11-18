@@ -17,45 +17,52 @@ TextLayer layer_name;
 TextLayer layer_contact;
 TextLayer layer_button;
 
-Layer QR_layer;
+Layer layer_QR;
 BmpContainer image;
 
 //QR Layer handler
 void layer_update_callback(Layer *me, GContext * ctx){
   GRect destination = layer_get_frame(&image.layer.layer);
 
-  destination.origin.y = 5;
-  destination.origin.x = 5;
-
-  graphics_draw_bitmap_in_rect(ctx, &image.bmp, destination);
-
-  destination.origin.x = 80;
-  destination.origin.y = 60;
+  destination.origin.y = 0;
+  destination.origin.x = 0;
 
   graphics_draw_bitmap_in_rect(ctx, &image.bmp, destination);
 }
 
-void contact_layer_update_callback(Layer *me, GContext * ctx){
+// void contact_layer_update_callback(Layer *me, GContext * ctx){
 
-}
+// }
 
 //Click handlers
-void clickHandlerShort(ClickRecognizerRef recognizer, Window *window){
-  text_layer_set_text(&layer_button, "Back");
-  layer_set_hidden(&QR_layer, false);
+void clickHandlerQR(ClickRecognizerRef recognizer, Window *window){
+  layer_set_hidden(&layer_QR, false);
   layer_set_hidden(&layer_contact_info, true);
-
 }
 
-void clickHandlerLong(ClickRecognizerRef recognizer, Window *window) {
-  text_layer_set_text(&layer_button, "QR"); 
+void goBack(){
   layer_set_hidden(&layer_contact_info, false);
-  layer_set_hidden(&QR_layer, true);
+  layer_set_hidden(&layer_QR, true);
 }
+
+void clickHandlerBack(ClickRecognizerRef recognizer, Window *window){
+  goBack();
+}
+
+
 
 void click_config_provider(ClickConfig **config, Window *window) {
-  config[BUTTON_ID_DOWN]->click.handler = (ClickHandler) clickHandlerShort;
-  config[BUTTON_ID_DOWN]->long_click.handler = (ClickHandler) clickHandlerLong;
+  config[BUTTON_ID_DOWN]->click.handler = (ClickHandler) clickHandlerQR;
+  //config[BUTTON_ID_DOWN]->long_click.handler = (ClickHandler) clickHandlerBack;
+  config[BUTTON_ID_DOWN]->click.repeat_interval_ms = 1;
+  
+  config[BUTTON_ID_UP]->click.handler = (ClickHandler) clickHandlerBack;
+  config[BUTTON_ID_UP]->click.repeat_interval_ms = 10;
+
+  config[BUTTON_ID_SELECT]->click.handler = (ClickHandler) clickHandlerBack;
+  config[BUTTON_ID_SELECT]->click.repeat_interval_ms = 10;
+
+
 }
 
 
@@ -65,7 +72,7 @@ void handle_init(AppContextRef ctx) {
   window_init(&window, "Window Name");
   window_stack_push(&window, true /* Animated */);
 
-  layer_contact_info.update_proc = &contact_layer_update_callback;
+  //layer_contact_info.update_proc = &contact_layer_update_callback;
   //Company information
   text_layer_init(&layer_company, GRect(0, 20, 144, 30));
   text_layer_set_text_alignment(&layer_company, GTextAlignmentCenter);
@@ -101,10 +108,10 @@ void handle_init(AppContextRef ctx) {
   window_set_click_config_provider(&window, (ClickConfigProvider) click_config_provider);
 
   //QR Image
-  layer_init(&QR_layer, window.layer.frame);
-  QR_layer.update_proc = &layer_update_callback;  
-  layer_add_child(&window.layer, &QR_layer);
-  layer_set_hidden(&QR_layer, true);
+  layer_init(&layer_QR, window.layer.frame);
+  layer_QR.update_proc = &layer_update_callback;  
+  layer_add_child(&window.layer, &layer_QR);
+  layer_set_hidden(&layer_QR, true);
   resource_init_current_app(&VERSION);
   bmp_init_container(RESOURCE_ID_QR_CONTACT_INFO, &image);
 
