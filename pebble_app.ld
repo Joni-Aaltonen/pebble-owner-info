@@ -1,0 +1,1 @@
+/Users/joni/pebble-dev/PebbleSDK-1.12/Pebble/sdk/pebble_app.ld
