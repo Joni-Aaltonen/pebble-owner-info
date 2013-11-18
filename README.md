@@ -14,9 +14,11 @@ The application shows the contact information of the user.
 
 #Building
 
-`./waf configure
+```
+./waf configure
 ./waf build
 python -m SimpleHTTPServer 8000
-// Browse to your http://<computer_ip>:8000/build/pebble-owner-info.pbw to install`
+// Browse to your http://<computer_ip>:8000/build/pebble-owner-info.pbw to install
+```
 
 Note that you need to have the pebble SDK installed and configured first. [https://developer.getpebble.com/1/GettingStarted/MacOS/](See instructions here)
