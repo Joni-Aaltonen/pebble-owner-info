@@ -6,10 +6,14 @@ Archive member included because of file (symbol)
 Allocating common symbols
 Common symbol       size              file
 
+image               0x44              src/pebble_owner_info.c.1.o
+layer_contact_info  0x28              src/pebble_owner_info.c.1.o
 layer_company       0x38              src/pebble_owner_info.c.1.o
+QR_layer            0x28              src/pebble_owner_info.c.1.o
 layer_contact       0x38              src/pebble_owner_info.c.1.o
 layer_name          0x38              src/pebble_owner_info.c.1.o
 window              0x58              src/pebble_owner_info.c.1.o
+layer_button        0x38              src/pebble_owner_info.c.1.o
 
 Discarded input sections
 
@@ -51,10 +55,6 @@ Discarded input sections
  .text.app_timer_send_event
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.app_timer_cancel_event
-                0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .text.bmp_init_container
-                0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .text.bmp_deinit_container
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.cos_lookup
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
@@ -100,21 +100,13 @@ Discarded input sections
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.layer_remove_from_parent
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .text.layer_get_frame
-                0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.layer_set_frame
-                0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .text.layer_set_hidden
-                0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .text.layer_init
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.light_enable
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.light_enable_interaction
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.psleep   0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .text.resource_init_current_app
-                0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.resource_get_handle
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.resource_load
@@ -134,8 +126,6 @@ Discarded input sections
  .text.rotbmp_pair_layer_set_src_ic
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.rotbmp_pair_layer_set_angle
-                0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .text.window_set_click_config_provider
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.window_set_background_color
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
@@ -166,8 +156,6 @@ Discarded input sections
  .text.clock_is_24h_style
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.property_animation_init_layer_frame
-                0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .text.graphics_draw_bitmap_in_rect
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
  .text.graphics_text_draw
                 0x0000000000000000        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
@@ -480,132 +468,225 @@ LOAD /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thum
  .pbl_header    0x0000000000000000       0x7c src/pebble_owner_info.c.1.o
                 0x0000000000000000                __pbl_app_info
 
-.rodata         0x000000000000007c       0x18
- .rodata        0x000000000000007c       0x18 src/pebble_owner_info.c.1.o
+.rodata         0x000000000000007c       0x20
+ .rodata        0x000000000000007c       0x20 src/pebble_owner_info.c.1.o
 
-.rodata.str1.1  0x0000000000000094       0x84
+.rodata.VERSION
+                0x000000000000009c       0x18
+ .rodata.VERSION
+                0x000000000000009c       0x18 src/pebble_owner_info.c.1.o
+
+.rodata.str1.1  0x00000000000000b4       0x8c
  .rodata.str1.1
-                0x0000000000000094       0x84 src/pebble_owner_info.c.1.o
+                0x00000000000000b4       0x8c src/pebble_owner_info.c.1.o
 
-.text           0x0000000000000118       0x14
+.text           0x0000000000000140       0x14
  *(.text)
- .text          0x0000000000000118       0x14 /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+ .text          0x0000000000000140       0x14 /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
 
-.glue_7         0x000000000000012c        0x0
+.glue_7         0x0000000000000154        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x000000000000012c        0x0
+.glue_7t        0x0000000000000154        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x000000000000012c        0x0
+.vfp11_veneer   0x0000000000000154        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x000000000000012c        0x0
+.v4_bx          0x0000000000000154        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x000000000000012c        0x0
+.iplt           0x0000000000000154        0x0
  .iplt          0x0000000000000000        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
 
-.text.handle_init
-                0x000000000000012c      0x130
- .text.handle_init
-                0x000000000000012c      0x130 src/pebble_owner_info.c.1.o
-                0x000000000000012c                handle_init
+.text.contact_layer_update_callback
+                0x0000000000000154        0x2
+ .text.contact_layer_update_callback
+                0x0000000000000154        0x2 src/pebble_owner_info.c.1.o
+                0x0000000000000154                contact_layer_update_callback
 
-.text.pbl_main  0x000000000000025c       0x28
+.text.click_config_provider
+                0x0000000000000158       0x1c
+ .text.click_config_provider
+                0x0000000000000158       0x1c src/pebble_owner_info.c.1.o
+                0x0000000000000158                click_config_provider
+
+.text.handle_deinit
+                0x0000000000000174       0x14
+ .text.handle_deinit
+                0x0000000000000174       0x14 src/pebble_owner_info.c.1.o
+                0x0000000000000174                handle_deinit
+
+.text.clickHandlerLong
+                0x0000000000000188       0x40
+ .text.clickHandlerLong
+                0x0000000000000188       0x40 src/pebble_owner_info.c.1.o
+                0x0000000000000188                clickHandlerLong
+
+.text.clickHandlerShort
+                0x00000000000001c8       0x40
+ .text.clickHandlerShort
+                0x00000000000001c8       0x40 src/pebble_owner_info.c.1.o
+                0x00000000000001c8                clickHandlerShort
+
+.text.handle_init
+                0x0000000000000208      0x1f4
+ .text.handle_init
+                0x0000000000000208      0x1f4 src/pebble_owner_info.c.1.o
+                0x0000000000000208                handle_init
+
+.text.layer_update_callback
+                0x00000000000003fc       0x50
+ .text.layer_update_callback
+                0x00000000000003fc       0x50 src/pebble_owner_info.c.1.o
+                0x00000000000003fc                layer_update_callback
+
+.text.pbl_main  0x000000000000044c       0x30
  .text.pbl_main
-                0x000000000000025c       0x28 src/pebble_owner_info.c.1.o
-                0x000000000000025c                pbl_main
+                0x000000000000044c       0x30 src/pebble_owner_info.c.1.o
+                0x000000000000044c                pbl_main
 
 .text.app_event_loop
-                0x0000000000000284        0xc
+                0x000000000000047c        0xc
  .text.app_event_loop
-                0x0000000000000284        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x0000000000000284                app_event_loop
+                0x000000000000047c        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000000000000047c                app_event_loop
+
+.text.bmp_init_container
+                0x0000000000000488        0xc
+ .text.bmp_init_container
+                0x0000000000000488        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000000000000488                bmp_init_container
+
+.text.bmp_deinit_container
+                0x0000000000000494        0xc
+ .text.bmp_deinit_container
+                0x0000000000000494        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000000000000494                bmp_deinit_container
 
 .text.fonts_get_system_font
-                0x0000000000000290        0xc
+                0x00000000000004a0        0xc
  .text.fonts_get_system_font
-                0x0000000000000290        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x0000000000000290                fonts_get_system_font
+                0x00000000000004a0        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000000000004a0                fonts_get_system_font
 
 .text.layer_add_child
-                0x000000000000029c        0xc
+                0x00000000000004ac        0xc
  .text.layer_add_child
-                0x000000000000029c        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x000000000000029c                layer_add_child
+                0x00000000000004ac        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000000000004ac                layer_add_child
+
+.text.layer_get_frame
+                0x00000000000004b8        0xc
+ .text.layer_get_frame
+                0x00000000000004b8        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000000000004b8                layer_get_frame
+
+.text.layer_set_hidden
+                0x00000000000004c4        0xc
+ .text.layer_set_hidden
+                0x00000000000004c4        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000000000004c4                layer_set_hidden
+
+.text.layer_init
+                0x00000000000004d0        0xc
+ .text.layer_init
+                0x00000000000004d0        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000000000004d0                layer_init
+
+.text.resource_init_current_app
+                0x00000000000004dc        0xc
+ .text.resource_init_current_app
+                0x00000000000004dc        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000000000004dc                resource_init_current_app
 
 .text.window_init
-                0x00000000000002a8        0xc
+                0x00000000000004e8        0xc
  .text.window_init
-                0x00000000000002a8        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000000000002a8                window_init
+                0x00000000000004e8        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000000000004e8                window_init
 
 .text.window_stack_push
-                0x00000000000002b4        0xc
+                0x00000000000004f4        0xc
  .text.window_stack_push
-                0x00000000000002b4        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000000000002b4                window_stack_push
+                0x00000000000004f4        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x00000000000004f4                window_stack_push
+
+.text.window_set_click_config_provider
+                0x0000000000000500        0xc
+ .text.window_set_click_config_provider
+                0x0000000000000500        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000000000000500                window_set_click_config_provider
 
 .text.text_layer_init
-                0x00000000000002c0        0xc
+                0x000000000000050c        0xc
  .text.text_layer_init
-                0x00000000000002c0        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000000000002c0                text_layer_init
+                0x000000000000050c        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000000000000050c                text_layer_init
 
 .text.text_layer_set_text
-                0x00000000000002cc        0xc
+                0x0000000000000518        0xc
  .text.text_layer_set_text
-                0x00000000000002cc        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000000000002cc                text_layer_set_text
+                0x0000000000000518        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000000000000518                text_layer_set_text
 
 .text.text_layer_set_font
-                0x00000000000002d8        0xc
+                0x0000000000000524        0xc
  .text.text_layer_set_font
-                0x00000000000002d8        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000000000002d8                text_layer_set_font
+                0x0000000000000524        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000000000000524                text_layer_set_font
 
 .text.text_layer_set_text_alignment
-                0x00000000000002e4        0xc
+                0x0000000000000530        0xc
  .text.text_layer_set_text_alignment
-                0x00000000000002e4        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000000000002e4                text_layer_set_text_alignment
+                0x0000000000000530        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000000000000530                text_layer_set_text_alignment
 
-.text.memset    0x00000000000002f0        0xc
- .text.memset   0x00000000000002f0        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
-                0x00000000000002f0                memset
+.text.graphics_draw_bitmap_in_rect
+                0x000000000000053c        0xc
+ .text.graphics_draw_bitmap_in_rect
+                0x000000000000053c        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x000000000000053c                graphics_draw_bitmap_in_rect
 
-.rel.dyn        0x00000000000002fc        0x0
+.text.memset    0x0000000000000548        0xc
+ .text.memset   0x0000000000000548        0xc /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+                0x0000000000000548                memset
+
+.rel.dyn        0x0000000000000554        0x0
  .rel.iplt      0x0000000000000000        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
  .rel.got       0x0000000000000000        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
 
-.data           0x00000000000002fc        0x4
+.data           0x0000000000000554        0x4
  *(.data)
- .data          0x00000000000002fc        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
- .data          0x00000000000002fc        0x4 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
-                0x00000000000002fc                __dso_handle
- .data          0x0000000000000300        0x0 src/pebble_owner_info.c.1.o
- .data          0x0000000000000300        0x0 /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
- .data          0x0000000000000300        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
- .data          0x0000000000000300        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .data          0x0000000000000554        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+ .data          0x0000000000000554        0x4 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+                0x0000000000000554                __dso_handle
+ .data          0x0000000000000558        0x0 src/pebble_owner_info.c.1.o
+ .data          0x0000000000000558        0x0 /Users/joni/pebble-dev/pebble-owner-info/lib/libpebble.a(tmpHZgwt9pebble_os.o)
+ .data          0x0000000000000558        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+ .data          0x0000000000000558        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
-.igot.plt       0x0000000000000300        0x0
+.igot.plt       0x0000000000000558        0x0
  .igot.plt      0x0000000000000000        0x0 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
 
-.got            0x0000000000000300       0x10
- .got           0x0000000000000300       0x10 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+.got            0x0000000000000558       0x20
+ .got           0x0000000000000558       0x20 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
 
-.got.plt        0x0000000000000310        0xc
- .got.plt       0x0000000000000310        0xc /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
-                0x0000000000000310                _GLOBAL_OFFSET_TABLE_
+.got.plt        0x0000000000000578        0xc
+ .got.plt       0x0000000000000578        0xc /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+                0x0000000000000578                _GLOBAL_OFFSET_TABLE_
 
-.bss            0x000000000000031c      0x100
+.bss            0x0000000000000584      0x1cc
  *(.bss)
- COMMON         0x000000000000031c      0x100 src/pebble_owner_info.c.1.o
-                0x000000000000031c                layer_company
-                0x0000000000000354                layer_contact
-                0x000000000000038c                layer_name
-                0x00000000000003c4                window
+ COMMON         0x0000000000000584      0x1cc src/pebble_owner_info.c.1.o
+                0x0000000000000584                image
+                0x00000000000005c8                layer_contact_info
+                0x00000000000005f0                layer_company
+                0x0000000000000628                QR_layer
+                0x0000000000000650                layer_contact
+                0x0000000000000688                layer_name
+                0x00000000000006c0                window
+                0x0000000000000718                layer_button
 
 DISCARD
  libc.a(*)
@@ -635,40 +716,40 @@ OUTPUT(/Users/joni/pebble-dev/pebble-owner-info/build/pebble-app.elf elf32-littl
  .comment       0x0000000000000000       0x4f src/pebble_owner_info.c.1.o
  .comment       0x0000000000000000       0x4f /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
 
-.debug_line     0x0000000000000000      0x278
+.debug_line     0x0000000000000000      0x30e
  .debug_line    0x0000000000000000       0x71 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
- .debug_line    0x0000000000000071      0x192 src/pebble_owner_info.c.1.o
- .debug_line    0x0000000000000203       0x75 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .debug_line    0x0000000000000071      0x228 src/pebble_owner_info.c.1.o
+ .debug_line    0x0000000000000299       0x75 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
-.debug_info     0x0000000000000000     0x1376
+.debug_info     0x0000000000000000     0x1659
  .debug_info    0x0000000000000000       0xb2 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
- .debug_info    0x00000000000000b2     0x1212 src/pebble_owner_info.c.1.o
- .debug_info    0x00000000000012c4       0xb2 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .debug_info    0x00000000000000b2     0x14f5 src/pebble_owner_info.c.1.o
+ .debug_info    0x00000000000015a7       0xb2 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
-.debug_abbrev   0x0000000000000000      0x213
+.debug_abbrev   0x0000000000000000      0x257
  .debug_abbrev  0x0000000000000000       0x12 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
- .debug_abbrev  0x0000000000000012      0x1ef src/pebble_owner_info.c.1.o
- .debug_abbrev  0x0000000000000201       0x12 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .debug_abbrev  0x0000000000000012      0x233 src/pebble_owner_info.c.1.o
+ .debug_abbrev  0x0000000000000245       0x12 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
-.debug_aranges  0x0000000000000000       0x78
+.debug_aranges  0x0000000000000000       0xa8
  .debug_aranges
                 0x0000000000000000       0x28 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
  .debug_aranges
-                0x0000000000000028       0x28 src/pebble_owner_info.c.1.o
+                0x0000000000000028       0x58 src/pebble_owner_info.c.1.o
  .debug_aranges
-                0x0000000000000050       0x28 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+                0x0000000000000080       0x28 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
-.debug_ranges   0x0000000000000000       0x58
+.debug_ranges   0x0000000000000000       0x88
  .debug_ranges  0x0000000000000000       0x20 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
- .debug_ranges  0x0000000000000020       0x18 src/pebble_owner_info.c.1.o
- .debug_ranges  0x0000000000000038       0x20 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .debug_ranges  0x0000000000000020       0x48 src/pebble_owner_info.c.1.o
+ .debug_ranges  0x0000000000000068       0x20 /Users/joni/pebble-dev/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
 
-.debug_loc      0x0000000000000000       0x8a
- .debug_loc     0x0000000000000000       0x8a src/pebble_owner_info.c.1.o
+.debug_loc      0x0000000000000000      0x18e
+ .debug_loc     0x0000000000000000      0x18e src/pebble_owner_info.c.1.o
 
-.debug_str      0x0000000000000000      0xbd5
- .debug_str     0x0000000000000000      0xbd5 src/pebble_owner_info.c.1.o
-                                        0xca8 (size before relaxing)
+.debug_str      0x0000000000000000      0xd93
+ .debug_str     0x0000000000000000      0xd93 src/pebble_owner_info.c.1.o
+                                        0xe8c (size before relaxing)
 
-.debug_frame    0x0000000000000000       0x50
- .debug_frame   0x0000000000000000       0x50 src/pebble_owner_info.c.1.o
+.debug_frame    0x0000000000000000       0xd0
+ .debug_frame   0x0000000000000000       0xd0 src/pebble_owner_info.c.1.o

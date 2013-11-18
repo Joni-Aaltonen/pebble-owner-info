@@ -11,38 +11,114 @@ PBL_APP_INFO(MY_UUID,
              APP_INFO_STANDARD_APP);
 
 Window window;
+Layer layer_contact_info;
 TextLayer layer_company;
 TextLayer layer_name;
 TextLayer layer_contact;
+TextLayer layer_button;
+
+Layer QR_layer;
+BmpContainer image;
+
+//QR Layer handler
+void layer_update_callback(Layer *me, GContext * ctx){
+  GRect destination = layer_get_frame(&image.layer.layer);
+
+  destination.origin.y = 5;
+  destination.origin.x = 5;
+
+  graphics_draw_bitmap_in_rect(ctx, &image.bmp, destination);
+
+  destination.origin.x = 80;
+  destination.origin.y = 60;
+
+  graphics_draw_bitmap_in_rect(ctx, &image.bmp, destination);
+}
+
+void contact_layer_update_callback(Layer *me, GContext * ctx){
+
+}
+
+//Click handlers
+void clickHandlerShort(ClickRecognizerRef recognizer, Window *window){
+  text_layer_set_text(&layer_button, "Back");
+  layer_set_hidden(&QR_layer, false);
+  layer_set_hidden(&layer_contact_info, true);
+
+}
+
+void clickHandlerLong(ClickRecognizerRef recognizer, Window *window) {
+  text_layer_set_text(&layer_button, "QR"); 
+  layer_set_hidden(&layer_contact_info, false);
+  layer_set_hidden(&QR_layer, true);
+}
+
+void click_config_provider(ClickConfig **config, Window *window) {
+  config[BUTTON_ID_DOWN]->click.handler = (ClickHandler) clickHandlerShort;
+  config[BUTTON_ID_DOWN]->long_click.handler = (ClickHandler) clickHandlerLong;
+}
+
+
 
 void handle_init(AppContextRef ctx) {
 
   window_init(&window, "Window Name");
   window_stack_push(&window, true /* Animated */);
 
+  layer_contact_info.update_proc = &contact_layer_update_callback;
+  //Company information
   text_layer_init(&layer_company, GRect(0, 20, 144, 30));
   text_layer_set_text_alignment(&layer_company, GTextAlignmentCenter);
   text_layer_set_text(&layer_company, "<company name>\n<title>");
   text_layer_set_font(&layer_company, fonts_get_system_font(FONT_KEY_GOTHIC_14));
-  layer_add_child(&window.layer, &layer_company.layer);
+  layer_add_child(&layer_contact_info, &layer_company.layer);
 
+  //Name
   text_layer_init(&layer_name, GRect(0, 60, 144, 30));
   text_layer_set_text_alignment(&layer_name, GTextAlignmentCenter);
   text_layer_set_text(&layer_name, "<full name>");
   text_layer_set_font(&layer_name, fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21));
-  layer_add_child(&window.layer, &layer_name.layer);
+  layer_add_child(&layer_contact_info, &layer_name.layer);
 
+  //Contact information
   text_layer_init(&layer_contact, GRect(0, 100, 144, 30));
   text_layer_set_text_alignment(&layer_contact, GTextAlignmentCenter);
   text_layer_set_text(&layer_contact, "<email address>\n<phone number>");
   text_layer_set_font(&layer_contact, fonts_get_system_font(FONT_KEY_GOTHIC_14));
-  layer_add_child(&window.layer, &layer_contact.layer);
+  layer_add_child(&layer_contact_info, &layer_contact.layer);
+
+  //button text
+  text_layer_init(&layer_button, GRect(100, 132, 40, 30));
+  text_layer_set_text_alignment(&layer_button, GTextAlignmentRight);
+  text_layer_set_text(&layer_button, "QR");
+  text_layer_set_font(&layer_button, fonts_get_system_font(FONT_KEY_GOTHIC_14));
+  layer_add_child(&layer_contact_info, &layer_button.layer);
+
+  //add contact info layer to window
+  layer_add_child(&window.layer, &layer_contact_info);
+
+  //button functionality
+  window_set_click_config_provider(&window, (ClickConfigProvider) click_config_provider);
+
+  //QR Image
+  layer_init(&QR_layer, window.layer.frame);
+  QR_layer.update_proc = &layer_update_callback;  
+  layer_add_child(&window.layer, &QR_layer);
+  layer_set_hidden(&QR_layer, true);
+  resource_init_current_app(&VERSION);
+  bmp_init_container(RESOURCE_ID_QR_CONTACT_INFO, &image);
+
+}
+
+void handle_deinit(AppContextRef ctx){
+  bmp_deinit_container(&image);
 }
 
 
 void pbl_main(void *params) {
   PebbleAppHandlers handlers = {
-    .init_handler = &handle_init
+    .init_handler = &handle_init,
+    .deinit_handler = &handle_deinit
   };
   app_event_loop(params, &handlers);
 }

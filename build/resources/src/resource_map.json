@@ -6,6 +6,11 @@
 	    "type":"raw",
 	    "defName":"DUMMY",
 	    "file":"resource_map.json"
-	   }
+	   },
+	   {
+	    "type":"png",
+	    "defName":"QR_CONTACT_INFO",
+	    "file":"images/qr_contact.png"
+	   }	   
 	  ]
 }
