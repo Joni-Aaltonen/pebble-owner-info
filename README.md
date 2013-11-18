@@ -10,6 +10,7 @@ The application shows the contact information of the user.
 	```
 	resources/images/qr_contact.png (size 144 x 154 px)
 	```
+	[QR Code generator](http://qrcode.littleidiot.be)
 	
 
 #Building
