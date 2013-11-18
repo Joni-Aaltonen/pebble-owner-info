@@ -76,21 +76,21 @@ void handle_init(AppContextRef ctx) {
   //Company information
   text_layer_init(&layer_company, GRect(0, 20, 144, 30));
   text_layer_set_text_alignment(&layer_company, GTextAlignmentCenter);
-  text_layer_set_text(&layer_company, "<company name>\n<title>");
+  text_layer_set_text(&layer_company, "Aaltonen Interactive\nCEO / Web Specialist");
   text_layer_set_font(&layer_company, fonts_get_system_font(FONT_KEY_GOTHIC_14));
   layer_add_child(&layer_contact_info, &layer_company.layer);
 
   //Name
   text_layer_init(&layer_name, GRect(0, 60, 144, 30));
   text_layer_set_text_alignment(&layer_name, GTextAlignmentCenter);
-  text_layer_set_text(&layer_name, "<full name>");
+  text_layer_set_text(&layer_name, "Joni Aaltonen");
   text_layer_set_font(&layer_name, fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21));
   layer_add_child(&layer_contact_info, &layer_name.layer);
 
   //Contact information
   text_layer_init(&layer_contact, GRect(0, 100, 144, 30));
   text_layer_set_text_alignment(&layer_contact, GTextAlignmentCenter);
-  text_layer_set_text(&layer_contact, "<email address>\n<phone number>");
+  text_layer_set_text(&layer_contact, "joni@aaltointeractive.fi\n+358 40 700 5372");
   text_layer_set_font(&layer_contact, fonts_get_system_font(FONT_KEY_GOTHIC_14));
   layer_add_child(&layer_contact_info, &layer_contact.layer);
 
