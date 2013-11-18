@@ -7,6 +7,7 @@ The application shows the contact information of the user.
 **Notes** 
 * Contact info needs to be edited in src/owner_info.c before building
 * QR Code containing the user's contact details needs to be replaced in
+
 	```
 	resources/images/qr_contact.png (size 144 x 154 px)
 	```
